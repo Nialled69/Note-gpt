@@ -1,0 +1,37 @@
+Assignment: Build a Mini AI-Powered Notes App
+
+Objective: Assess the candidate's proficiency in your tech stack and their ability to integrate frontend and backend components (use claude/cursor/chatgpt, etc, as per your convenience to build the app).​
+Task Overview:
+Frontend: Develop a responsive web application using Next.js (TypeScript), TailwindCSS, Shadcn.
+
+
+Backend: Utilize Supabase for authentication and data storage.
+
+
+Features:
+
+User Authentication: Implement sign-up and login functionalities.
+Google
+Email & Password
+
+
+Note Creation: Allow users to create, edit, and delete notes.
+
+
+AI Summarization: Integrate a basic AI summarization feature to summarize notes.
+Use the free DeepSeek API for summarization (or use any other API, such as Groq)
+
+
+State Management: Use React Query for data fetching and caching (very important).
+
+
+Design Components: Incorporate Shadcn UI components for a polished look.​
+
+
+### must have :- 
+
+UI/UX Quality: Clean, intuitive, and responsive design.
+
+Code Quality: Well-structured, readable, and maintainable code with proper use of TypeScript.
+
+Integration Skills: Effective use of Supabase for backend functionalities.
