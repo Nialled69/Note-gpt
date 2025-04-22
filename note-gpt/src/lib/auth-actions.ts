@@ -16,6 +16,10 @@ export async function login(formData: FormData) {
   const { error } = await supabase.auth.signInWithPassword(data);
 
   if (error) {
+    console.log(error)
+    if (error.message.toLowerCase().includes("email not confirmed")) {
+      alert("Please verify your email")
+    }
     redirect("/error");
   }
 
