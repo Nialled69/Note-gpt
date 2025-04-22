@@ -21,7 +21,7 @@ export default async function Home() {
         {user ? (
           <>
             <NoteForm userId={user.id} />
-            <h2 className="text-2xl font-semibold mb-2">📝 Your Notes</h2>
+            <h2 className="text-2xl font-semibold pt-4 mt-2 mb-2">📝 Your Notes</h2>
             <NoteList userId={user.id} />
           </>
         ) : (
