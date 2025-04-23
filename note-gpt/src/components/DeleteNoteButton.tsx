@@ -1,3 +1,5 @@
+// to delete notes with shadcn delete confirmation dialog box
+
 "use client";
 
 import { Trash2 } from "lucide-react";

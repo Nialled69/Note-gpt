@@ -25,13 +25,13 @@ Use the free DeepSeek API for summarization (or use any other API, such as Groq)
 State Management: Use React Query for data fetching and caching (very important). (done)
 
 
-Design Components: Incorporate Shadcn UI components for a polished look.​ (working)
+Design Components: Incorporate Shadcn UI components for a polished look.​ (Kinda Done)
 
 
 ### must have :-
 
-UI/UX Quality: Clean, intuitive, and responsive design.
+UI/UX Quality: Clean, intuitive, and responsive design. (kinda Done)
 
-Code Quality: Well-structured, readable, and maintainable code with proper use of TypeScript.
+Code Quality: Well-structured, readable, and maintainable code with proper use of TypeScript. (working)
 
 Integration Skills: Effective use of Supabase for backend functionalities. (done)

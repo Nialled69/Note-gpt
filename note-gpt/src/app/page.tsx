@@ -1,3 +1,6 @@
+// this is the main page. this will be rendered when the user is verified
+// this page contains all the notes data with all the logics
+
 import LoginButton from "@/components/LoginLogoutButton";
 import UserGreetText from "../components/UserGreetText";
 import { createClient } from "../../utils/supabase/server";

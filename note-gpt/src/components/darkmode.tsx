@@ -1,3 +1,5 @@
+// to toggle between lightmode and darkmode for better UI-UX
+
 "use client";
 
 import { useEffect, useState } from "react";

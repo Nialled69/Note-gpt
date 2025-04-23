@@ -5,19 +5,19 @@ import { redirect } from "next/navigation";
 
 import { createClient } from "../../utils/supabase/server";
 
-export async function login(formData: FormData) {
-  const supabase = createClient();
+export async function login(formData: FormData) {  // login logic with email ( General email providers like Gmail, rediffmail, etc)
+  const supabase = createClient();  
 
   const data = {
     email: formData.get("email") as string,
     password: formData.get("password") as string,
   };
 
-  const { error } = await supabase.auth.signInWithPassword(data);
+  const { error } = await supabase.auth.signInWithPassword(data); //sign-in with password without storing password in public tables (stored in auth table i think)
 
   if (error) {
     console.log(error)
-    if (error.message.toLowerCase().includes("email not confirmed")) {
+    if (error.message.toLowerCase().includes("email not confirmed")) { //email confirmation check
       alert("Please verify your email")
     }
     redirect("/error");
@@ -27,7 +27,7 @@ export async function login(formData: FormData) {
   redirect("/");
 }
 
-export async function signup(formData: FormData) {
+export async function signup(formData: FormData) {  //sign-up logic (with general email providers eg. Gmail, Yahoo, etc)
   const supabase = createClient();
 
   const firstName = formData.get("first-name") as string;
@@ -53,7 +53,7 @@ export async function signup(formData: FormData) {
   redirect("/");
 }
 
-export async function signout() {
+export async function signout() {  //sign-out logic
   const supabase = createClient();
   const { error } = await supabase.auth.signOut();
   if (error) {
@@ -64,7 +64,7 @@ export async function signout() {
   redirect("/logout");
 }
 
-export async function signInWithGoogle() {
+export async function signInWithGoogle() {  // Google sign-up logic
   const supabase = createClient();
   const { data, error } = await supabase.auth.signInWithOAuth({
     provider: "google",

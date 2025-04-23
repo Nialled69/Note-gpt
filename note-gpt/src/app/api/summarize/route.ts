@@ -1,3 +1,6 @@
+// Server side logic to handle the post request send from client side to summarize the notes with DeepSeek R1 AI
+// used DeepSeek R! free API from https://openrouter.ai
+
 import { NextRequest, NextResponse } from "next/server";
 import OpenAI from "openai";
 
@@ -25,11 +28,11 @@ export async function POST(req: NextRequest) {
       model: "deepseek/deepseek-r1:free",
       messages: [
         {
-          role: "system",
+          role: "system", // system prompt
           content: "You are a helpful assistant that summarizes user notes concisely. Just respond with the short summary output, nothing else.",
         },
         {
-          role: "user",
+          role: "user", // pre-fized user prompt
           content: `Please summarize this note. Just give me the body of the summary. Here's the note -> ${note}`,
         },
       ],

@@ -1,3 +1,5 @@
+// to update note with shadcn update dialog box when clicked on pencil icon
+
 const { PencilIcon } = require('@heroicons/react/24/outline');
 import { useState } from 'react';
 import { Button } from "@/components/ui/button";

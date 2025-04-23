@@ -1,3 +1,5 @@
+// to render the client-side and server-side tokens
+
 import { createServerClient, type CookieOptions } from '@supabase/ssr'
 import { NextResponse, type NextRequest } from 'next/server'
 

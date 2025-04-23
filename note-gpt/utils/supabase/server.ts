@@ -1,3 +1,5 @@
+// to handle server side cookies (tokens)
+
 import { createServerClient, type CookieOptions } from '@supabase/ssr'
 import { cookies } from 'next/headers'
 
@@ -16,7 +18,6 @@ export function createClient(){
           try {
             (await cookieStore).set({ name, value, ...options })
           } catch (error) {
-            // The `set` method was called from a Server Component.
             console.log("error in supabase/server.ts set method -> ",error);
           }
         },
@@ -24,7 +25,6 @@ export function createClient(){
           try {
             (await cookieStore).set({ name, value: '', ...options })
           } catch (error) {
-            // The `delete` method was called from a Server Component.
             console.log("error in supabase/server.ts remove method -> ",error);
           }
         },

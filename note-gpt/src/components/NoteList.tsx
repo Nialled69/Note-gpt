@@ -1,3 +1,6 @@
+// to handle all of user notes in real time, updation, deletion, summarization, everything.
+// implemented cool yet minimalist and simplistic design with shadcn-ui
+
 "use client";
 
 import { useEffect, useState } from "react";
@@ -16,12 +19,12 @@ interface Note {
 export default function NoteList({ userId }: { userId: string }) {
   const [notes, setNotes] = useState<Note[]>([]);
   const supabase = createClient();
-  const handleSaveNote = async (id: string, newNote: string) => {
+  const handleSaveNote = async (id: string, newNote: string) => {  //note updation logic
     try {
       const now:Date = new Date();
       const { error } = await supabase
         .from('notes')
-        .update({ note: newNote, updated_at:now.toISOString() })
+        .update({ note: newNote, updated_at:now.toISOString() })  
         .eq('id', id);
 
       if (error) {
@@ -37,7 +40,7 @@ export default function NoteList({ userId }: { userId: string }) {
       console.log('Error saving note:', error);
     }
   };
-  const handleDeleteNote = async (id: string) => {
+  const handleDeleteNote = async (id: string) => {  //note deletion logic
     const { error } = await supabase.from("notes").delete().eq("id", id);
   
     if (error) {
@@ -47,7 +50,7 @@ export default function NoteList({ userId }: { userId: string }) {
     }
   };
   useEffect(() => {
-    const fetchNotes = async () => {
+    const fetchNotes = async () => { //fetchin all notes based on userid
       const { data, error } = await supabase
         .from("notes")
         .select("*")
@@ -62,8 +65,8 @@ export default function NoteList({ userId }: { userId: string }) {
     };
 
     fetchNotes();
-    const notesChannel = supabase
-      .channel("notes")
+    const notesChannel = supabase   //realtime updates on note-list
+      .channel("notes")   
       .on(
         "postgres_changes",
         {

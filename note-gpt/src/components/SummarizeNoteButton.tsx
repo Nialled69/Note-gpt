@@ -1,6 +1,9 @@
+// this page handles the AI summarization of notes with Deepseek AI.
+// Server-side logic of this is present in src/app/api/summarize/route.ts (post request handling)
+
 "use client";
 
-import axios from 'axios';
+import axios from 'axios'; 
 import { useState,useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import {
@@ -23,7 +26,7 @@ export default function SummarizeNoteButton({ note }: SummarizeNoteButtonProps) 
   const [summary, setSummary] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const [loadingTextIndex, setLoadingTextIndex] = useState(0);
-  const loadingTexts = [
+  const loadingTexts = [  // animation illusion lol
     "Generating summary",
     "Generating summary.",
     "Generating summary..",
@@ -53,7 +56,7 @@ export default function SummarizeNoteButton({ note }: SummarizeNoteButtonProps) 
   const handleSummarize = async () => {
     setLoading(true);
     try {
-        const response = await axios.post("/api/summarize", { note });
+        const response = await axios.post("/api/summarize", { note });  // server-side calling of the AI to initiate summarizing the note text
         setSummary(response.data.summary);
       } catch (error: any) {
         console.error("Summarization error:", error?.response?.data || error.message);
@@ -62,7 +65,7 @@ export default function SummarizeNoteButton({ note }: SummarizeNoteButtonProps) 
       }
   };
 
-  return (
+  return (  // shadcn UI components used - dialogbox, dialogcontent, etc 
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
         <Button variant="outline" size="icon" className="rounded-full">

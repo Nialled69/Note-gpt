@@ -1,3 +1,5 @@
+// to handle saving the notes in supabase with same user-id but different notes.id (1:M relationship between public.profiles and public.notes)
+
 "use client";
 
 import { useState } from "react";
