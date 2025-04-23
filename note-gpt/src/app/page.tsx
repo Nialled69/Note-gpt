@@ -5,6 +5,7 @@ import { redirect } from "next/navigation";
 import NoteList from "../components/NoteList";
 import NoteForm from "../components/NoteForm";
 import Footer from "./additional_UI/footer";
+import DarkModeToggle from "@/components/darkmode";
 
 export default async function Home() {
 
@@ -25,7 +26,10 @@ export default async function Home() {
             /> */}
             <UserGreetText />
           </div>
-          <LoginButton />
+          <div className="flex items-center gap-2">
+            <DarkModeToggle />
+            <LoginButton />
+          </div>
         </div>
       </div>
 
@@ -33,11 +37,11 @@ export default async function Home() {
         {user ? (
           <>
             <NoteForm userId={user.id} />
-            <h2 className="text-2xl font-semibold pt-4 mt-4 mb-2">📝 Your Notes</h2>
+            <h2 className="text-2xl font-semibold pt-4 mt-4 mb-2 text-gray-900 dark:text-white">📝 Your Notes</h2>
             <NoteList userId={user.id} />
           </>
         ) : (
-          <p className="text-center text-gray-500">
+          <p className="text-center text-gray-500 dark:text-gray-300">
             Please log in to add and view your notes.
           </p>
         )}

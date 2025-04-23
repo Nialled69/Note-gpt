@@ -3,7 +3,7 @@ import { SiLetterboxd, SiDiscord } from "react-icons/si";
 
 export default function Footer() {
   return (
-    <footer className="w-full bg-black py-6 mt-12 text-center">
+    <footer className="w-full bg-black py-6 mt-12 text-center border-t border-white">
         <div className="flex justify-center gap-8 mb-4">
             <a
             href="https://www.instagram.com/daftendank"
