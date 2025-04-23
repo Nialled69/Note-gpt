@@ -86,7 +86,9 @@ export default function SummarizeNoteButton({ note }: SummarizeNoteButtonProps) 
             </p>
           ) : summary ? (
             <div className="flex flex-col">
-              <p className="text-sm whitespace-pre-wrap text-gray-800 mb-4">{summary}</p>
+              <p className="text-sm whitespace-pre-wrap text-gray-800 dark:text-gray-100 mb-4">
+                {summary}
+              </p>
               <Button
                 variant="secondary"
                 onClick={handleSummarize}

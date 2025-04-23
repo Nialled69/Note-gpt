@@ -32,6 +32,11 @@ Design Components: Incorporate Shadcn UI components for a polished look.​ (Kin
 
 UI/UX Quality: Clean, intuitive, and responsive design. (kinda Done)
 
-Code Quality: Well-structured, readable, and maintainable code with proper use of TypeScript. (working)
+Code Quality: Well-structured, readable, and maintainable code with proper use of TypeScript. (Done)
 
 Integration Skills: Effective use of Supabase for backend functionalities. (done)
+
+
+
+
+Updates from Sarthik - Project is done. UI job still remains questionable since UI can never be "PERFECT". Rest of the stuff is done and project is ready to be deployed.
