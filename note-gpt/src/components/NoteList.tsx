@@ -5,6 +5,7 @@ import { createClient } from "../../utils/supabase/client";
 import { Card, CardContent } from "@/components/ui/card";
 import EditNoteButton from './EditNoteButton'
 import DeleteNoteButton from './DeleteNoteButton';
+import SummarizeNoteButton from './SummarizeNoteButton';
 
 interface Note {
   id: string;
@@ -129,14 +130,15 @@ export default function NoteList({ userId }: { userId: string }) {
     <div className="space-y-4 grid gap-4">
       {notes.map((note) => (
         <Card key={note.id} className="relative">
-          <CardContent className="space-y-1 pt-2">
+          <CardContent className="space-y-1 pt-2 pr-20">
             <p className="whitespace-pre-wrap pb-4">{note.note || 'GGWP'}</p>
             <p className="text-xs text-gray-500 mt-4">
                 Created on {(new Date(note.created_at).toLocaleTimeString([], { weekday: 'long', year: 'numeric', month: 'short',day: 'numeric',hour: '2-digit', minute: '2-digit', hour12: true }))}
             </p>
           </CardContent>
 
-          <div className="absolute top-2 right-2 flex items-center gap-2">
+          <div className="absolute top-2 right-2 flex flex-col items-center gap-2">
+            <SummarizeNoteButton note={note.note} />
             <EditNoteButton
               noteId={note.id}
               initialNote={note.note || 'GGWP'}
