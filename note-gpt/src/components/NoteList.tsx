@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { createClient } from "../../utils/supabase/client";
 import { Card, CardContent } from "@/components/ui/card";
 import EditNoteButton from './EditNoteButton'
+import DeleteNoteButton from './DeleteNoteButton';
 
 interface Note {
   id: string;
@@ -16,8 +17,6 @@ export default function NoteList({ userId }: { userId: string }) {
   const supabase = createClient();
   const handleSaveNote = async (id: string, newNote: string) => {
     try {
-      // Call your update API or database function to save the updated note
-      // Example with Supabase
       const now:Date = new Date();
       const { error } = await supabase
         .from('notes')
@@ -27,7 +26,6 @@ export default function NoteList({ userId }: { userId: string }) {
       if (error) {
         console.log('Error updating note:', error);
       } else {
-        // Update the state after saving
         setNotes((prevNotes) =>
           prevNotes.map((note) =>
             note.id === id ? { ...note, note: newNote } : note
@@ -36,6 +34,15 @@ export default function NoteList({ userId }: { userId: string }) {
       }
     } catch (error) {
       console.log('Error saving note:', error);
+    }
+  };
+  const handleDeleteNote = async (id: string) => {
+    const { error } = await supabase.from("notes").delete().eq("id", id);
+  
+    if (error) {
+      console.error("Error deleting note:", error.message);
+    } else {
+      setNotes((prevNotes) => prevNotes.filter((note) => note.id !== id));
     }
   };
   useEffect(() => {
@@ -76,7 +83,6 @@ export default function NoteList({ userId }: { userId: string }) {
           };
 
           if (payload.eventType === "INSERT") {
-            console.log("Realtime INSERT payload:", payloadNew);
             const newNote: Note = {
               id: payloadNew.id,
               note: payloadNew.note,
@@ -99,8 +105,15 @@ export default function NoteList({ userId }: { userId: string }) {
           }
     
           else if (payload.eventType === "DELETE") {
+            const nowUpdatedNote: Note = {
+              id: payloadNew.id,
+              note: payloadNew.note,
+              created_at: payloadNew.created_at,
+            };
             setNotes((prevNotes) =>
-              prevNotes.filter((note) => note.id !== payloadOld.id)
+              prevNotes.map((note) =>
+                note.id === nowUpdatedNote.id ? nowUpdatedNote : note
+              )
             );
           }
         }
@@ -123,12 +136,14 @@ export default function NoteList({ userId }: { userId: string }) {
             </p>
           </CardContent>
 
-          {/* Add the EditNoteButton here */}
-          <EditNoteButton
-            noteId={note.id}
-            initialNote={note.note || 'GGWP'}
-            onSave={handleSaveNote}
-          />
+          <div className="absolute top-2 right-2 flex items-center gap-2">
+            <EditNoteButton
+              noteId={note.id}
+              initialNote={note.note || 'GGWP'}
+              onSave={handleSaveNote}
+            />
+            <DeleteNoteButton noteId={note.id} onDelete={handleDeleteNote} />
+          </div>
         </Card>
       ))}
 

@@ -18,14 +18,16 @@ const UserGreetText = () => {
   const hour = new Date().getHours();
     if (user !== null) {
       return (
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Good {hour<12 ? "morning" : hour<17 ? "afternoon" : "evening"} &nbsp;
-          <code className="font-mono font-bold">{user.user_metadata.full_name.split(" ")[0] ?? "user"}</code>
+        <p className="text-sm flex items-center px-2 py-2 rounded-md bg-zinc-200 dark:bg-zinc-800/40 border border-gray-300 dark:border-neutral-800">
+          Good {hour < 12 ? "morning" : hour < 17 ? "afternoon" : "evening"}&nbsp;
+          <code className="font-mono font-bold">
+            {user.user_metadata.full_name.split(" ")[0] ?? "user"}
+          </code>
         </p>
       );
     }
   return (
-    <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
+    <p className="text-sm flex items-center px-2 py-2 rounded-md bg-zinc-200 dark:bg-zinc-800/40 border border-gray-300 dark:border-neutral-800">
       &nbsp;
       <code className="font-mono font-bold">Good {hour<12 ? "morning" : hour<17 ? "afternoon" : "evening"}</code>
     </p>

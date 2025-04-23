@@ -1,5 +1,8 @@
 const { PencilIcon } = require('@heroicons/react/24/outline');
 import { useState } from 'react';
+import { Button } from "@/components/ui/button";
+import {Dialog,DialogTrigger,DialogContent,DialogHeader,DialogTitle,DialogFooter} from "@/components/ui/dialog";
+import { Textarea } from "@/components/ui/textarea";
 
 interface EditNoteButtonProps {
   noteId: string;
@@ -8,44 +11,45 @@ interface EditNoteButtonProps {
 }
 
 const EditNoteButton = ({ noteId, initialNote, onSave }: EditNoteButtonProps) => {
-  const [isEditing, setIsEditing] = useState(false);
+  const [open, setOpen] = useState(false);
   const [editedNote, setEditedNote] = useState(initialNote);
 
   const handleSave = () => {
     onSave(noteId, editedNote);
-    setIsEditing(false); 
+    setOpen(false);
   };
 
   return (
-    <div className="relative">
-      {/* Pencil Icon */}
-      <button
-        className="absolute bottom-2 right-2 p-2 bg-gray-100 rounded-full text-gray-600 hover:text-blue-600"
-        onClick={() => setIsEditing(true)}
-      >
-        <PencilIcon className="h-5 w-5" />
-      </button>
+    <Dialog open={open} onOpenChange={setOpen}>
+      <DialogTrigger asChild>
+        <Button
+          variant="ghost"
+          size="icon"
+          className="text-gray-600 hover:text-blue-600"
+        >
+          <PencilIcon className="h-5 w-5" size="18" />
+        </Button>
+      </DialogTrigger>
 
-      {isEditing && (
-        <div className="absolute bottom-14 right-2 bg-white p-6 rounded-lg shadow-lg w-80">
-            <textarea
-            className="w-full p-3 border border-gray-300 rounded-md"
-            value={editedNote}
-            onChange={(e) => setEditedNote(e.target.value)}
-            rows={5}  // Adjusts the height of the textarea
-            />
-            <div className="flex justify-end space-x-3 mt-4">
-            <button className="px-6 py-3 bg-gray-200 rounded-md" onClick={() => setIsEditing(false)}>
-                Cancel
-            </button>
-            <button className="px-6 py-3 bg-blue-600 text-white rounded-md" onClick={handleSave}>
-                Save
-            </button>
-            </div>
-        </div>
-        )}
-    </div>
+      <DialogContent className="sm:max-w-lg">
+        <DialogHeader>
+          <DialogTitle>Edit your note</DialogTitle>
+        </DialogHeader>
+        <Textarea
+          value={editedNote}
+          onChange={(e) => setEditedNote(e.target.value)}
+          rows={6}
+          className="mt-2"
+        />
+        <DialogFooter className="mt-4">
+          <Button variant="outline" onClick={() => setOpen(false)}>
+            Cancel
+          </Button>
+          <Button onClick={handleSave}>Save</Button>
+        </DialogFooter>
+      </DialogContent>
+    </Dialog>
   );
-};
+}
 
 export default EditNoteButton;
