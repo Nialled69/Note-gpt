@@ -19,9 +19,9 @@ const UserGreetText = () => {
     if (user !== null) {
       return (
         <p className="text-sm flex items-center px-2 py-2 rounded-md bg-zinc-200 dark:bg-zinc-800/40 border border-gray-300 dark:border-neutral-800">
-          Good {hour < 12 ? "morning" : hour < 17 ? "afternoon" : "evening"}&nbsp;
+          Good {hour < 12 ? "morning" : hour < 17 ? "afternoon" : "evening"} &nbsp;
           <code className="font-mono font-bold">
-            {user.user_metadata.full_name.split(" ")[0] ?? "user"}
+             {user.user_metadata.full_name.split(" ")[0] ?? "user"}
           </code>
         </p>
       );

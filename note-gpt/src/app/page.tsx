@@ -29,7 +29,7 @@ export default async function Home() {
         </div>
       </div>
 
-      <div className="w-full max-w-3xl space-y-4">
+      <div className="w-full max-w-3xl space-y-4 mt-2 pt-2">
         {user ? (
           <>
             <NoteForm userId={user.id} />
