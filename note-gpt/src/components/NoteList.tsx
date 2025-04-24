@@ -136,7 +136,7 @@ export default function NoteList({ userId }: { userId: string }) {
           <CardContent className="space-y-1 pt-2 pr-20">
             <p className="whitespace-pre-wrap pb-4">{note.note || 'GGWP'}</p>
             <p className="text-xs text-gray-500 mt-4">
-                Created on {(new Date(note.created_at).toLocaleTimeString([], { weekday: 'long', year: 'numeric', month: 'short',day: 'numeric',hour: '2-digit', minute: '2-digit', hour12: true }))}
+                Created on {(new Date(note.created_at).toLocaleTimeString([], { weekday: 'long', year: 'numeric', month: 'short',day: 'numeric'}))}
             </p>
           </CardContent>
 

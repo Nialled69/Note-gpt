@@ -39,4 +39,16 @@ Integration Skills: Effective use of Supabase for backend functionalities. (done
 
 
 
-Updates from Sarthik - Project is done. UI job still remains questionable since UI can never be "PERFECT". Rest of the stuff is done and project is ready to be deployed.
+Updates from Sarthik - Project is done. UI job still remains questionable since UI can never be "PERFECT". Rest of the stuff is done and project is deployed on vercel
+new update - getting this error in console 
+
+
+684-0ce4159dd6894166.js:1 Uncaught Error: Minified React error #418; visit https://react.dev/errors/418?args[]=text&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at rP (4bd1b696-2a06bb612fb58527.js:1:34097)
+    at 4bd1b696-2a06bb612fb58527.js:1:117355
+    at im (4bd1b696-2a06bb612fb58527.js:1:120134)
+    at ic (4bd1b696-2a06bb612fb58527.js:1:112445)
+    at 4bd1b696-2a06bb612fb58527.js:1:108432
+    at u5 (4bd1b696-2a06bb612fb58527.js:1:108533)
+    at iH (4bd1b696-2a06bb612fb58527.js:1:129977)
+    at MessagePort.w (684-0ce4159dd6894166.js:1:25800

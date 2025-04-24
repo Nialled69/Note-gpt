@@ -73,6 +73,7 @@ export async function signInWithGoogle() {  // Google sign-up logic
         access_type: "offline",
         prompt: "consent",
       },
+      redirectTo: `${process.env.NEXT_PUBLIC_SITE_URL}/auth/callback`
     },
   });
 
