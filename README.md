@@ -34,8 +34,53 @@ Capture your thoughts and turn them into intelligent summaries — fast, clean, 
 
 ## 🚀 Getting Started
 
-### 1. Clone the repo
+### 1. Cloning the repo
 
 ```bash
 git clone https://github.com/your-username/note-gpt.git
+```
+```bash
 cd note-gpt
+```
+
+### 2. Installing the dependencies
+
+```bash
+npm i
+# or
+yarn i
+#or
+pnpm i
+```
+
+### 3. Settin up environment variables
+
+Create a `.env.local` file in the root and add these:
+
+```env
+NEXT_PUBLIC_SUPABASE_URL=<Your supabase project URL without quotes>
+NEXT_PUBLIC_SUPABASE_ANON_KEY=<Your supabase project anon Key without quotes>
+OPENROUTER_API_KEY=<Your LLM model API key without quotes>
+NEXT_PUBLIC_SITE_URL=http://localhost:3000
+NEXT_PUBLIC_SITE_NAME=Note-GPT
+```
+
+### 4. Run in localhost
+
+```bash
+npm run dev
+```
+
+Open `http://localhost:3000` and ✨ start writing, editing and summarizing your notes!
+
+---
+
+## 🧠 AI Summarization
+
+Powered by the blazing-fast [DeepSeek R1](https://deepseek.com) API.
+
+- Summary generation is triggered via a `Summarize` button on each note.
+- The `summarizeNote` server action sends note content to the DeepSeek R1 API.
+- Responses are parsed with full TypeScript safety and fallback error handling.
+- Toast messages via `sonner` display feedback for success, rate-limits, or unknown errors.
+- Server error parsing uses strict `unknown` type narrowing for clean logs and lint-free code.
