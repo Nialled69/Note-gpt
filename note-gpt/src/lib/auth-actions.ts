@@ -2,10 +2,9 @@
 
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
-
 import { createClient } from "../../utils/supabase/server";
 
-export async function login(formData: FormData) {  // login logic with email ( General email providers like Gmail, rediffmail, etc)
+export async function login(_: any, formData: FormData) {  // login logic with email ( General email providers like Gmail, rediffmail, etc)
   const supabase = createClient();  
 
   const data = {
@@ -18,7 +17,7 @@ export async function login(formData: FormData) {  // login logic with email ( G
   if (error) {
     console.log(error)
     if (error.message.toLowerCase().includes("email not confirmed")) { //email confirmation check
-      alert("Please verify your email")
+      return { error: "Please confirm your email" };
     }
     redirect("/error");
   }
@@ -27,7 +26,7 @@ export async function login(formData: FormData) {  // login logic with email ( G
   redirect("/");
 }
 
-export async function signup(formData: FormData) {  //sign-up logic (with general email providers eg. Gmail, Yahoo, etc)
+export async function signup(_:any, formData: FormData) {  //sign-up logic (with general email providers eg. Gmail, Yahoo, etc)
   const supabase = createClient();
 
   const firstName = formData.get("first-name") as string;
@@ -42,7 +41,8 @@ export async function signup(formData: FormData) {  //sign-up logic (with genera
       },
     },
   };
-
+  if (data.password.length < 6)
+    return {error : "Password length must be atleast 6 characters long"}
   const { error } = await supabase.auth.signUp(data);
 
   if (error) {

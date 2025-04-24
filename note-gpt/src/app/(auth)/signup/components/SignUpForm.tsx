@@ -1,5 +1,6 @@
-import Link from "next/link";
+"use client"
 
+import Link from "next/link";
 import { Button } from "../../../../components/ui/button";
 import {
   Card,
@@ -11,8 +12,18 @@ import {
 import { Input } from "../../../../components/ui/input";
 import { Label } from "../../../../components/ui/label";
 import { signup } from "../../../../lib/auth-actions";
+import { useEffect,useActionState } from "react";
+import { toast } from "sonner";
 
 export function SignUpForm() {
+  const initialState = { error: "" };
+  const [state, formAction] = useActionState(signup, initialState);
+  useEffect(() => {
+    if (state.error) {
+      toast.error(state.error);
+    }
+  }, [state]);
+
   return (
     <Card className="mx-auto max-w-sm">
       <CardHeader>
@@ -22,7 +33,7 @@ export function SignUpForm() {
         </CardDescription>
       </CardHeader>
       <CardContent>
-        <form action="">
+      <form action={formAction}>
           <div className="grid gap-4">
             <div className="grid grid-cols-2 gap-4">
               <div className="grid gap-2">
@@ -56,9 +67,9 @@ export function SignUpForm() {
             </div>
             <div className="grid gap-2">
               <Label htmlFor="password">Password</Label>
-              <Input name="password" id="password" type="password" />
+              <Input name="password" id="password" type="password" required />
             </div>
-            <Button formAction={signup} type="submit" className="w-full">
+            <Button formAction={formAction} type="submit" className="w-full">
               Create an account
             </Button>
           </div>
