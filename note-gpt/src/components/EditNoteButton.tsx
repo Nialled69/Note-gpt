@@ -1,6 +1,6 @@
 // to update note with shadcn update dialog box when clicked on pencil icon
 
-const { PencilIcon } = require('@heroicons/react/24/outline');
+import { PencilIcon } from '@heroicons/react/24/outline';
 import { useState } from 'react';
 import { Button } from "@/components/ui/button";
 import {Dialog,DialogTrigger,DialogContent,DialogHeader,DialogTitle,DialogFooter} from "@/components/ui/dialog";
@@ -29,7 +29,7 @@ const EditNoteButton = ({ noteId, initialNote, onSave }: EditNoteButtonProps) =>
           size="icon"
           className="text-gray-600 hover:text-blue-600"
         >
-          <PencilIcon className="h-5 w-5" size="18" />
+          <PencilIcon className="h-5 w-5"/>
         </Button>
       </DialogTrigger>
 

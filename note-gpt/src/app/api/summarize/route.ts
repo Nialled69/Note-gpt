@@ -4,6 +4,21 @@
 import { NextRequest, NextResponse } from "next/server";
 import OpenAI from "openai";
 
+type APIError = {
+  response?: {
+    status: number;
+  };
+};
+
+function isAPIError(error: unknown): error is APIError {
+  return (
+    typeof error === "object" &&
+    error !== null &&
+    "response" in error &&
+    typeof (error as { response?: { status?: unknown } }).response?.status === "number"
+  );
+}
+
 const openai = new OpenAI({
   baseURL: "https://openrouter.ai/api/v1",
   apiKey: process.env.OPENROUTER_API_KEY,
@@ -42,18 +57,22 @@ export async function POST(req: NextRequest) {
 
     return NextResponse.json({ summary });
 
-  } catch (error: any) {
-    if (error.response?.status === 401 || error.response?.status === 403) {
-      return NextResponse.json(
-        { error: "Invalid or unauthorized OpenRouter API key." },
-        { status: error.response.status }
-      );
+  } catch (error: unknown) {
+    if (isAPIError(error)) {
+      const status = error.response!.status;
+  
+      if (status === 401 || status === 403) {
+        return NextResponse.json(
+          { error: "Invalid or unauthorized OpenRouter API key." },
+          { status }
+        );
+      }
     }
-
+  
     console.error("Summarization error:", error);
     return NextResponse.json(
       { error: "Failed to generate summary." },
       { status: 500 }
     );
-  }
+  }    
 }

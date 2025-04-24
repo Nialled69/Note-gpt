@@ -5,9 +5,10 @@
 "use client";
 import { createClient } from "../../utils/supabase/client";
 import React, { useEffect, useState } from "react";
+import type { User } from "@supabase/supabase-js";
 
 const UserGreetText = () => {
-  const [user, setUser] = useState<any>(null);
+  const [user, setUser] = useState<User | null>(null);
   const supabase = createClient();
   useEffect(() => {
     const fetchUser = async () => {
@@ -18,7 +19,7 @@ const UserGreetText = () => {
       // console.log(user)
     };
     fetchUser();
-  }, []);
+  }, [supabase.auth]);
   const hour = new Date().getHours();
     if (user !== null) {
       return (    // Sending the user greeting like good morning/good evening based on current time. (Doesn't work well in my pc because my node.js time isn't correct)

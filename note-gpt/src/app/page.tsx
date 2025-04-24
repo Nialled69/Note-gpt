@@ -4,7 +4,6 @@
 import LoginButton from "@/components/LoginLogoutButton";
 import UserGreetText from "../components/UserGreetText";
 import { createClient } from "../../utils/supabase/server";
-import { redirect } from "next/navigation";
 import NoteList from "../components/NoteList";
 import NoteForm from "../components/NoteForm";
 import Footer from "./additional_UI/footer";

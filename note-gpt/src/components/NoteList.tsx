@@ -82,9 +82,9 @@ export default function NoteList({ userId }: { userId: string }) {
             note: string;
             created_at: string;
           };
-          const payloadOld = payload.old as {
-            id: string;
-          };
+          // const payloadOld = payload.old as {
+          //   id: string;
+          // };
 
           if (payload.eventType === "INSERT") {
             const newNote: Note = {

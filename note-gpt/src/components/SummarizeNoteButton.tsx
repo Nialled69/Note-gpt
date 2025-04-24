@@ -51,16 +51,22 @@ export default function SummarizeNoteButton({ note }: SummarizeNoteButtonProps) 
     }
   
     return () => clearInterval(interval);
-  }, [loading]);
+  }, [loading, loadingTexts.length]);
 
   const handleSummarize = async () => {
     setLoading(true);
     try {
         const response = await axios.post("/api/summarize", { note });  // server-side calling of the AI to initiate summarizing the note text
         setSummary(response.data.summary);
-      } catch (error: any) {
-        console.error("Summarization error:", error?.response?.data || error.message);
-      } finally {
+      } catch (error: unknown) {
+        if (typeof error === 'object' && error !== null) {
+          const err = error as { response?: { data?: unknown }, message?: string };
+          console.error("Summarization error:", err.response?.data || err.message || error);
+        } else {
+          console.error("Summarization error:", error);
+        }
+      }
+       finally {
         setLoading(false);
       }
   };
