@@ -37,7 +37,7 @@ Capture your thoughts and turn them into intelligent summaries — fast, clean, 
 ### 1. Cloning the repo
 
 ```bash
-git clone https://github.com/your-username/note-gpt.git
+git clone https://github.com/Nialled69/Note-gpt.git
 ```
 ```bash
 cd note-gpt
