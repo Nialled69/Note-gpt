@@ -84,3 +84,16 @@ Powered by the blazing-fast [DeepSeek R1](https://deepseek.com) API.
 - Responses are parsed with full TypeScript safety and fallback error handling.
 - Toast messages via `sonner` display feedback for success, rate-limits, or unknown errors.
 - Server error parsing uses strict `unknown` type narrowing for clean logs and lint-free code.
+
+---
+
+## 🌍 Live Site
+
+🔗 https://note-gpt-oo.vercel.app
+
+---
+
+## 👨‍💻 Author
+
+Built with  <img src="https://i.redd.it/nkehy8r29mh41.jpg" width="24" height="22">  and late-night commits by [Sarthik](https://github.com/Nialled69)  
+Give a ⭐️ if you like it!
